@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>32701999290-hfpkgt89d0t94iic97vmvd8b7igs5uuh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.32701999290-hfpkgt89d0t94iic97vmvd8b7igs5uuh</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>32701999290-od1ll8oavlm8t2a2uasgkbt301huto54.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCQsTthAZHFygRYQmaSV1kDyly0JF_Nb6o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>32701999290</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.flutterflow.newsdroidapp</string>
+	<key>PROJECT_ID</key>
+	<string>news-droid-9c8c6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>news-droid-9c8c6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:32701999290:ios:97383af6a6ed3fc6753a83</string>
+</dict>
+</plist>

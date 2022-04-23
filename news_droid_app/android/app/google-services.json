@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "32701999290",
+    "project_id": "news-droid-9c8c6",
+    "storage_bucket": "news-droid-9c8c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32701999290:android:655eec83aa4cf7c3753a83",
+        "android_client_info": {
+          "package_name": "com.flutterflow.newsdroidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32701999290-od1ll8oavlm8t2a2uasgkbt301huto54.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterflow.newsdroidapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "32701999290-u1o6jl6qnu89dmmdin48oa3rvvctlsmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu3ogu3J4pCUfcqLBsg7smJt2-9PkbjxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32701999290-u1o6jl6qnu89dmmdin48oa3rvvctlsmb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "32701999290-28hb2gfat60b012ng3j85rln2q1qr7tn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.courts"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
