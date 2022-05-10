@@ -45,124 +45,129 @@ class _ImageDummyWidgetState extends State<ImageDummyWidget> {
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              InkWell(
-                onTap: () async {
-                  final selectedMedia = await selectMediaWithSourceBottomSheet(
-                    context: context,
-                    allowPhoto: true,
-                    backgroundColor:
-                        FlutterFlowTheme.of(context).secondaryBackground,
-                    textColor: FlutterFlowTheme.of(context).primaryText,
-                  );
-                  if (selectedMedia != null &&
-                      selectedMedia.every(
-                          (m) => validateFileFormat(m.storagePath, context))) {
-                    showUploadMessage(
-                      context,
-                      'Uploading file...',
-                      showLoading: true,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                InkWell(
+                  onTap: () async {
+                    final selectedMedia =
+                        await selectMediaWithSourceBottomSheet(
+                      context: context,
+                      allowPhoto: true,
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).secondaryBackground,
+                      textColor: FlutterFlowTheme.of(context).primaryText,
                     );
-                    final downloadUrls = await Future.wait(selectedMedia.map(
-                        (m) async => await uploadData(m.storagePath, m.bytes)));
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    if (downloadUrls != null) {
-                      setState(() => uploadedFileUrl1 = downloadUrls.first);
+                    if (selectedMedia != null &&
+                        selectedMedia.every((m) =>
+                            validateFileFormat(m.storagePath, context))) {
                       showUploadMessage(
                         context,
-                        'Success!',
+                        'Uploading file...',
+                        showLoading: true,
                       );
-                    } else {
-                      showUploadMessage(
-                        context,
-                        'Failed to upload media',
-                      );
-                      return;
-                    }
-                  }
-                },
-                child: Container(
-                  width: 400,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFEEEEEE),
-                    image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: Image.asset(
-                        'assets/images/programmer-wallpaper-hd-Archives-Developer-Kafasi.jpeg',
-                      ).image,
-                    ),
-                  ),
-                  child: InkWell(
-                    onTap: () async {
-                      final selectedMedia =
-                          await selectMediaWithSourceBottomSheet(
-                        context: context,
-                        allowPhoto: true,
-                      );
-                      if (selectedMedia != null &&
-                          selectedMedia.every((m) =>
-                              validateFileFormat(m.storagePath, context))) {
+                      final downloadUrls = await Future.wait(selectedMedia.map(
+                          (m) async =>
+                              await uploadData(m.storagePath, m.bytes)));
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      if (downloadUrls != null) {
+                        setState(() => uploadedFileUrl1 = downloadUrls.first);
                         showUploadMessage(
                           context,
-                          'Uploading file...',
-                          showLoading: true,
+                          'Success!',
                         );
-                        final downloadUrls = await Future.wait(
-                            selectedMedia.map((m) async =>
-                                await uploadData(m.storagePath, m.bytes)));
-                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                        if (downloadUrls != null) {
-                          setState(() => uploadedFileUrl2 = downloadUrls.first);
-                          showUploadMessage(
-                            context,
-                            'Success!',
-                          );
-                        } else {
-                          showUploadMessage(
-                            context,
-                            'Failed to upload media',
-                          );
-                          return;
-                        }
+                      } else {
+                        showUploadMessage(
+                          context,
+                          'Failed to upload media',
+                        );
+                        return;
                       }
-                    },
-                    child: Image.network(
-                      uploadedFileUrl1,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
+                    }
+                  },
+                  child: Container(
+                    width: 400,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEEEEEE),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: Image.asset(
+                          'assets/images/programmer-wallpaper-hd-Archives-Developer-Kafasi.jpeg',
+                        ).image,
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () async {
+                        final selectedMedia =
+                            await selectMediaWithSourceBottomSheet(
+                          context: context,
+                          allowPhoto: true,
+                        );
+                        if (selectedMedia != null &&
+                            selectedMedia.every((m) =>
+                                validateFileFormat(m.storagePath, context))) {
+                          showUploadMessage(
+                            context,
+                            'Uploading file...',
+                            showLoading: true,
+                          );
+                          final downloadUrls = await Future.wait(
+                              selectedMedia.map((m) async =>
+                                  await uploadData(m.storagePath, m.bytes)));
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          if (downloadUrls != null) {
+                            setState(
+                                () => uploadedFileUrl2 = downloadUrls.first);
+                            showUploadMessage(
+                              context,
+                              'Success!',
+                            );
+                          } else {
+                            showUploadMessage(
+                              context,
+                              'Failed to upload media',
+                            );
+                            return;
+                          }
+                        }
+                      },
+                      child: Image.network(
+                        uploadedFileUrl1,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              FFButtonWidget(
-                onPressed: () async {
-                  final usersUpdateData = createUsersRecordData(
-                    photoUrl: '',
-                  );
-                  await currentUserReference.update(usersUpdateData);
-                  Navigator.pop(context);
-                },
-                text: 'share',
-                options: FFButtonOptions(
-                  width: 130,
-                  height: 40,
-                  color: FlutterFlowTheme.of(context).primaryColor,
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.white,
-                      ),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
+                FFButtonWidget(
+                  onPressed: () async {
+                    final usersUpdateData = createUsersRecordData(
+                      photoUrl: '',
+                    );
+                    await currentUserReference.update(usersUpdateData);
+                    Navigator.pop(context);
+                  },
+                  text: 'share',
+                  options: FFButtonOptions(
+                    width: 130,
+                    height: 40,
+                    color: FlutterFlowTheme.of(context).primaryColor,
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Poppins',
+                          color: Colors.white,
+                        ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 12,
                   ),
-                  borderRadius: 12,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

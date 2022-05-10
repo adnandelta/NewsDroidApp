@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../auth/auth_util.dart';
 import '../blog_a1/blog_a1_widget.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
@@ -32,7 +34,7 @@ class _BlogStreamWidgetState extends State<BlogStreamWidget> {
             child: Text(
               'Blog Stream',
               style: FlutterFlowTheme.of(context).title3.override(
-                    fontFamily: 'Charm',
+                    fontFamily: 'Poppins',
                     fontSize: 33,
                   ),
             ),
@@ -96,223 +98,145 @@ class _BlogStreamWidgetState extends State<BlogStreamWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          decoration: BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection('blog_stream')
+                        .snapshots(),
+                    builder:
+                        (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                      return ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: streamSnapshot.data.docs.length,
+                          itemBuilder: (ctx, index) => Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
                                 child: Container(
                                   width:
-                                      MediaQuery.of(context).size.width * 0.96,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 6,
-                                        color: Color(0x3A000000),
-                                        offset: Offset(0, 2),
-                                      )
-                                    ],
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 0, 0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.network(
-                                        'https://www.fairobserver.com/wp-content/uploads/2021/07/artificial-intelligence.jpg',
-                                        width: 100,
-                                        height: 300,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
+                                      MediaQuery.of(context).size.width * 0.94,
+                                  decoration: BoxDecoration(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
+                                        child: Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.96,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 6,
+                                                color: Color(0x3A000000),
+                                                offset: Offset(0, 2),
+                                              )
+                                            ],
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                          child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    12, 0, 0, 0),
-                                            child: Text(
-                                              'Artificial Intelligence: Silver \nBullet in a Pandora’s Box',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 22,
-                                                      ),
+                                                    16, 0, 0, 0),
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              child: Image.network(
+                                                streamSnapshot
+                                                    .data.docs[index]["img_url"]
+                                                    .toString(),
+                                                width: 100,
+                                                height: 300,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(2, 4, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
-                                        child: Text(
-                                          'Advances in computing power, the availability of data and of new algorithms have led to rapid progress in the field of artificial intelligence (AI). This is “the single most influential human innovation in history,” says Archana Sinha. Deployed wisely, AI holds the promise of addressing some of the world’s most pressing challenges, but it may also have destabilizing consequences on some key dimensions of economic and social life.',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF090F13),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                              ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.94,
-                          decoration: BoxDecoration(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                                child: Container(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.96,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 6,
-                                        color: Color(0x3A000000),
-                                        offset: Offset(0, 2),
-                                      )
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 8, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                                12, 0, 0, 0),
+                                                    child: Text(
+                                                      streamSnapshot
+                                                          .data
+                                                          .docs[index]
+                                                              ["news_body"]
+                                                          .toString(),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .title1
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                fontSize: 22,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            2, 4, 0, 0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 0, 0, 0),
+                                                child: Text(
+                                                  streamSnapshot.data
+                                                      .docs[index]["news_body"]
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyText1
+                                                      .override(
+                                                        fontFamily:
+                                                            'Lexend Deca',
+                                                        color:
+                                                            Color(0xFF090F13),
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                      ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ],
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15, 0, 0, 0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.network(
-                                        'https://www.fairobserver.com/wp-content/uploads/2021/07/Coronavirus-news-1-299x217.jpg',
-                                        width: 100,
-                                        height: 300,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 4, 8, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 0, 0, 0),
-                                            child: Text(
-                                              'The Impact of COVID-19 on \nNational Individualism',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title1
-                                                      .override(
-                                                        fontFamily: 'Poppins',
-                                                        fontSize: 22,
-                                                      ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(2, 4, 0, 0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 0, 0, 0),
-                                        child: Text(
-                                          'The COVID-19 pandemic happened to be a fertile ground for nationalist and protectionist political forces. By bringing national politics to the forefront, European integration suffered fundamentally. With the restoration of national territorial borders as well as “vaccine nationalism,” European nation-states have acted as active competitive managers in opposition to a coordinated inclusive pan-European approach.',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyText1
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0xFF090F13),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                              ));
+                    }),
               ],
             ),
           ),
